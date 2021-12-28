@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <description>PHPCS configuration file.</description>
+
+    <rule ref="PSR12"/>
+
+    <arg value="p"/><!-- Show progression -->
+
+    <arg name="extensions" value="php"/>
+
+    <file>app</file>
+    <file>bootstrap</file>
+    <file>config</file>
+    <file>database</file>
+    <file>resources</file>
+    <file>routes</file>
+    <file>tests</file>
+
+    <exclude-pattern>bootstrap/cache/*</exclude-pattern>
+    <exclude-pattern>*.blade.php</exclude-pattern>
+
+    <!-- Ignore missing namespace in migration files -->
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>database/migrations/*</exclude-pattern>
+    </rule>
+
+    <!-- Ignore long lines in tests -->
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <!-- Ignore test methods not in camelCase - we prefer snake_case for tests -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+</ruleset>

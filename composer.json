@@ -1,0 +1,73 @@
+{
+    "name": "gbuckingham89/valet-launchpad",
+    "type": "project",
+    "description": "A web based UI for browsing the projects being served by Laravel Valet.",
+    "keywords": ["Laravel Valet", "Laravel Valet UI", "Valet UI", "Launchpad"],
+    "homepage": "https://github.com/gbuckingham89/valet-launchpad",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "George Buckingham",
+            "email": "george@georgebuckingham.com",
+            "homepage": "https://www.georgebuckingham.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gbuckingham89/valet-launchpad/issues",
+        "source": "https://github.com/gbuckingham89/valet-launchpad"
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "artesaos/seotools": "^0.20.2",
+        "composer/semver": "^3.2",
+        "fruitcake/laravel-cors": "^2.0",
+        "gbuckingham89/valet-assistant": "^0.1.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.54",
+        "laravel/tinker": "^2.5",
+        "spatie/laravel-enum": "^2.5"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "nunomaduro/larastan": "^1.0",
+        "phpunit/phpunit": "^9.5.8"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
+        "test": "@php artistan test"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}

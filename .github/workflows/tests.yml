@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches: [master, release]
+  pull_request:
+    branches: [master, release]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-11, ubuntu-latest] # https://github.com/actions/virtual-environments
+        php: [7.4, 8.0, 8.1]
+
+    name: ${{ matrix.os }} - PHP${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, xml, json, mbstring, zip, pcntl, bcmath, intl, fileinfo
+
+      - name: Create .env file
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install dependencies
+        run: |
+          composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Execute tests
+        run: php artisan test
