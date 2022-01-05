@@ -22,7 +22,7 @@
         "artesaos/seotools": "^0.20.2",
         "composer/semver": "^3.2",
         "fruitcake/laravel-cors": "^2.0",
-        "gbuckingham89/valet-assistant": "^0.1.0",
+        "gbuckingham89/valet-assistant": "^0.2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",

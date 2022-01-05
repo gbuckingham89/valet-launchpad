@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11, ubuntu-latest] # https://github.com/actions/virtual-environments
+        os: [macos-11] # https://github.com/actions/virtual-environments
         php: [7.4, 8.0, 8.1]
 
     name: ${{ matrix.os }} - PHP${{ matrix.php }}

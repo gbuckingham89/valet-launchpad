@@ -70,14 +70,14 @@ If it doesn't already exist, add a `default` key, and ensure the value is set to
 
 ### Valet not installed
 
-If you see errors about Valet not being installed (but you're sure that it is, and you see output by running `which valet` from your local terminal) it's likely that the user running PHP-FPM doesn't know where the Valet binary is located.
+If you see errors about Valet not being installed (but you're sure that it is, and you see output by running `which valet` from your local terminal) it's likely that the user running PHP-FPM doesn't know where the Valet binary is located, or doesn't have permission to run it.
 
 There are two ways to resolve this;
 
-1. Add `/Users/[local-username]/.composer/vendor/bin` to the PATH for the PHP-FPM user _(remember to insert the username that Valet is installed under)_
-2. Find the value of your PATH by running `echo $PATH` from your local Terminal. Add the output of this to the `VALET_ASSISTANT_ENV_PATH` key in your `.env` file. This PATH value will then be used by the application.
+1. Find the value of the PATH environment variable for your shell by running `echo $PATH` from your local Terminal. Add the output of this to the `VALET_ASSISTANT_ENV_PATH` key in your `.env` file. This PATH value will then be used whenever the underlying [gbuckingham89/valet-assistant](https://github.com/gbuckingham89/valet-assistant) package executes a shell command. It is NOT used by code outside that package.
+2. Add `/Users/[local-username]/.composer/vendor/bin` to the PATH environment for the user running the PHP script _(remember to insert the username that Valet is installed under)_
 
-_**Please do your own research and consider any security implications of giving PHP access to additional PATH directories.**_
+_**Please do your own research and consider any security implications of giving PHP access to additional directories through the PATH environment variable.**_
 
 ## 🏗 Updating
 
